@@ -1,7 +1,7 @@
 module RequestStore
   class Railtie < ::Rails::Railtie
     initializer "request_store.insert_middleware" do |app|
-
+      binding.pry
       unless app.config.middleware.map(&:name).include? 'RequestStore::Middleware'
         if ActionDispatch.const_defined? :RequestId
           app.config.middleware.insert_after ActionDispatch::RequestId, RequestStore::Middleware
